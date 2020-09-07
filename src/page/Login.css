@@ -1,0 +1,32 @@
+.login_container {
+    background-color: #dadbd3;
+    background-image: url("https://user-images.githubusercontent.com/15075759/28719144-86dc0f70-73b1-11e7-911d-60d70fcded21.png");
+    /*background-image: url("https://i.imgur.com/bJj8eg2.jpg");*/
+    height: 100vh;
+    display: grid;
+    place-items: center;
+}
+
+.login_box {
+    display: flex;
+    background-color: #ededed;
+    width: 70%;
+    height: 70%;
+    box-shadow: -1px 4px 20px -6px rgba(0, 0, 0, 0.7);
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.login_box>img {
+    object-fit: contain;
+    height: 200px;
+    margin-bottom: 40px;
+}
+
+.login_box>button {
+    margin-top: 50px;
+    text-transform: inherit !important;
+    background-color: #0a8d48;
+    color: white;
+}

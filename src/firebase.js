@@ -15,7 +15,7 @@ firebase.initializeApp({
 })
 
 
-const db = firebase.storage();
+const db = firebase.firestore();
 const auth = firebase.auth();
 const provider = new firebase.auth.GoogleAuthProvider();
 
