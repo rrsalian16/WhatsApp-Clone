@@ -1,6 +1,6 @@
 import ACTIONS from '../actions-names';
 
-import { auth, provider } from "../../firebase";
+import db, { auth, provider } from "../../firebase";
 
 import { ActionRouteNavigate } from "./action-route";
 import ROUTES from '../../configs/routes';
@@ -15,30 +15,35 @@ export function ActionSessionStart() {
         auth
             .signInWithPopup(provider)
             .then((result) => {
-                console.log(result);
-                console.log(result.additionalUserInfo.isNewUser);
-                console.log(result.user.uid);
-                console.log(result.user.email);
-                console.log(result.user.displayName);
-                console.log(result.user.photoURL);
 
                 // If new user create entry into DB
+                if (result.additionalUserInfo.isNewUser) {
+                    db.collection("WhatsApp-User").doc(result.user.uid).set({
+                        createdAt: new Date(),
+                        uid: result.user.uid,
+                        email: result.user.email,
+                        name: result.user.displayName,
+                        profilePic: result.user.photoURL
+                    });
+                }
+
+                console.log(data);
 
                 //Route to Login Page
-
-                console.log(data);
                 data = {
-                    "success": true,
+                    success: true,
+                    uid: result.user.uid,
+                    email: result.user.email,
+                    name: result.user.displayName,
+                    profilePic: result.user.photoURL
                 }
-                console.log(data);
-
                 dispatch({ type: SESSION_ACTIONS.START, data: data })
                 dispatch(ActionRouteNavigate(ROUTES.SAMPLE))
             })
             .catch((error) => {
                 console.log(error);
+                dispatch(ActionSessionClear());
             });
-
     }
 }
 
