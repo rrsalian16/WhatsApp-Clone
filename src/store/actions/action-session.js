@@ -15,7 +15,6 @@ export function ActionSessionStart() {
         auth
             .signInWithPopup(provider)
             .then((result) => {
-
                 // If new user create entry into DB
                 if (result.additionalUserInfo.isNewUser) {
                     db.collection("WhatsApp-User").doc(result.user.uid).set({
@@ -27,7 +26,6 @@ export function ActionSessionStart() {
                     });
                 }
 
-                console.log(data);
 
                 //Route to Login Page
                 data = {

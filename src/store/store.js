@@ -17,10 +17,10 @@ export const history = createBrowserHistory({
 });
 
 const persistConfig = {
-    key: 'root',
-    storage,
-    whitelist: ['rSession']
-}
+  key: "root",
+  storage,
+  whitelist: ["rSession", "rFirebase"],
+};
 
 
 const persistedReducer = persistReducer(persistConfig, RootReducer(history));

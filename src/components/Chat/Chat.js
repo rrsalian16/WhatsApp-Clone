@@ -1,68 +1,51 @@
-import React, { useState } from "react";
+import React from "react";
+import { useSelector, useDispatch } from "react-redux";
 
 import "./Chat.css";
-import { Avatar, IconButton } from "@material-ui/core";
-import {
-    AttachFile,
-    MoreVert,
-    SearchOutlined,
-    InsertEmoticon,
-    Mic,
-} from "@material-ui/icons";
+
+
+import ChatHeader from './ChatHeader/ChatHeader';
+import ChatBody from './ChatBody/ChatBody';
+import ChatFooter from './ChatFooter/ChatFooter';
 
 function Chat() {
-    const [inputMsg, setInputMsg] = useState("");
 
-    const sendMessage = (e) => {
-        e.preventDefault();
-        console.log(inputMsg);
-        setInputMsg("");
-    };
+    const dispatch = useDispatch();
+     const {uid, chat,users,selectedChatIndex,selectedChatUid } = useSelector(
+        (state) => ({
+            uid:state.rSession.uid,
+            chat:state.rFirebase.messages,
+            users:state.rFirebase.users,
+            selectedChatIndex: state.rFirebase.selectedChatIndex,
+            selectedChatUid: state.rFirebase.selectedChatUid
+        })
+    );
+
+    const selectedUser = selectedChatUid && users && users.find(u => u.uid === selectedChatUid);
+
     return (
-        <div className="chat">
-            <div className="chat_header">
-                <Avatar />
-                <div className="chat_header_info">
-                    <h3>Room Name</h3>
-                    <p>Last Seen at..</p>
-                </div>
-                <div className="chat_header_right">
-                    <IconButton>
-                        <SearchOutlined />
-                    </IconButton>
-                    <IconButton>
-                        <AttachFile />
-                    </IconButton>
-                    <IconButton>
-                        <MoreVert />
-                    </IconButton>
-                </div>
-            </div>
-            <div className="chat_body">
-                <p className="chat_message">
-                    <span className="chat_name">Rakshith R S</span>
-          Hey Guys
-          <span className="chat_time">3:30pm</span>
-                </p>
-                <p className="chat_message chat_receiver">
-                    <span className="chat_name">Rohith S</span>
-          Hello Guys
-          <span className="chat_time">3:35pm</span>
-                </p>
-            </div>
-            <div className="chat_footer">
-                <InsertEmoticon />
-                <form onSubmit={sendMessage}>
-                    <input
-                        value={inputMsg}
-                        onChange={(e) => setInputMsg(e.target.value)}
-                        type="text"
-                        placeholder="Send Message. . ."
-                    />
-                </form>
-                <Mic />
-            </div>
-        </div>
+      <div className="chat">
+        {selectedChatIndex !== null && selectedChatIndex !== undefined ? (
+          <>
+            <ChatHeader pic={selectedUser?.profilePic} name={selectedUser?.name} />
+            <ChatBody
+              message={chat && selectedChatIndex !== undefined && chat[selectedChatIndex]}
+            />
+            <ChatFooter />
+          </>
+        ) : (
+          <div className="intro">
+            <img
+              className="intro_img"
+              src={require("../../assets/images/intro-img.png")}
+              alt="intro_img"
+            />
+            <p>
+              To Chat with Admin click Add New Chat & Search "Admin".
+            </p>
+          </div>
+        )}
+      </div>
     );
 }
 

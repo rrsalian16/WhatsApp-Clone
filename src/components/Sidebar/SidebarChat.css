@@ -1,30 +1,98 @@
 .sidebarchat {
+  display: flex;
+  padding: 20px;
+  cursor: pointer;
+  border: 1px solid #f6f6f6;
+}
+
+.sidebarchat_chat {
     display: flex;
     padding: 20px;
     cursor: pointer;
-    border: 1px solid #f6f6f6;
+    border: 1px solid #aaa;
 }
 
-.sidebarchat:hover {
-    background-color: #eaeaea;
+.sidebarchat:hover,
+.sidebarchat_new_chat:hover {
+  background-color: #eaeaea;
 }
 
 .sidebarchat_info>h2 {
-    font-size: 16px;
-    margin-bottom: 8px;
+  font-size: 16px;
+  margin-bottom: 8px;
 }
 
 .sidebarchat_info {
-    margin-left: 15px;
+  margin-left: 15px;
 }
 
 .sidebarchat.newchat {
-    padding: 5px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  padding: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .sidebarchat.newchat .sidebarchat_info>h2 {
-    margin-top: 8px;
+  margin-top: 8px;
+}
+
+
+ul {
+  list-style-type: none;
+}
+
+.popup-content {
+  margin: auto;
+  background: rgb(255, 255, 255);
+  /*width: 50%;*/
+  padding: 5px;
+  border-radius: 10px;
+}
+
+.popup-arrow {
+  color: rgb(255, 255, 255);
+}
+
+[role='tooltip'].popup-content {
+  width: 200px;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 0px 3px;
+}
+
+.popup-overlay {
+  background: rgba(0, 0, 0, 0.5);
+}
+
+[data-popup='tooltip'].popup-overlay {
+  background: transparent;
+}
+
+.searchModalInput {
+  padding: 5px;
+  border: none;
+  border: 1px solid gray;
+  border-radius: 5px;
+  outline: none;
+  width: 100%;
+}
+
+.searchedUser {
+  display: flex;
+  align-items: center;
+  margin: 5px;
+
+  padding: 5px;
+  border: 1px solid gray;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+span {
+  margin-left: 5px;
+}
+
+
+.searchedUsersList {
+  max-height: 400px;
+  overflow: auto;
 }

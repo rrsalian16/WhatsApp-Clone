@@ -1,0 +1,49 @@
+.chat_body {
+    background-image: url("https://user-images.githubusercontent.com/15075759/28719144-86dc0f70-73b1-11e7-911d-60d70fcded21.png");
+    /*background-image: url("https://i.imgur.com/bJj8eg2.jpg");*/
+    flex: 1;
+    object-fit: cover;
+    background-repeat: repeat;
+    background-position: center;
+    padding: 10px;
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.chat_message {
+    position: relative;
+    font-size: 1rem;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 10px;
+    background-color: white;
+    width: fit-content;
+
+}
+
+.chat_name {
+    position: absolute;
+    top: -13px;
+    left:0;
+    font-weight: 800;
+    font-size: xx-small;
+}
+
+.chat_time {
+    margin-left: 10px;
+    font-size: xx-small;
+}
+
+.chat_sender {
+    margin-left: auto;
+    background-color: #dcf8c6;
+}
+
+.date-wise{
+    text-align: center;
+}
+.tick_image{
+        width: 10px;
+        margin-left: 5px;
+}

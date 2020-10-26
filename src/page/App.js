@@ -8,9 +8,15 @@ import { ActionRouteNavigate } from "../store/actions/action-route";
 import Sidebar from "../components/Sidebar/Sidebar";
 import Chat from "../components/Chat/Chat";
 
+import { ActionGetChats } from "../store/actions/action-firebase";
+
 import "./App.css";
 
 export class App extends Component {
+  componentDidMount() {
+    this.props.ActionGetChats(this.props.uid);
+  }
+
   render() {
     return (
       <div className="app">
@@ -27,7 +33,7 @@ export class App extends Component {
 }
 
 function mapStateToProps({ rSession }) {
-  return {};
+  return { uid: rSession.uid };
 }
 
 function mapDispatchToProps(dispatch) {
@@ -35,6 +41,7 @@ function mapDispatchToProps(dispatch) {
     {
       ActionSessionClear,
       ActionRouteNavigate,
+      ActionGetChats,
     },
     dispatch
   );
